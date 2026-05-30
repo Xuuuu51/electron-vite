@@ -1,12 +1,12 @@
 # electron-vite
 
-基于 [electron-vite](https://electron-vite.org) 构建的 Electron 桌面应用模板，使用 React + TypeScript，已适配 **Electron v41**。
+使用 `create electron` 初始化的 [electron-vite](https://electron-vite.org) 官方模板（React + TypeScript），并在此基础上修复了 **Electron v41** 的兼容性问题。
 
 ## 为什么需要这个项目？
 
-从 Electron v41 开始，npm 包 `electron` 不再内置预编译的二进制文件，而是通过 `@electron/rebuild` 按需下载。这导致 `electron-vite` 和 `electron-builder` 在开发/构建时无法找到 Electron 可执行文件。
+[electron-vite 官方模板](https://electron-vite.org) 默认依赖 `electron` npm 包内置的预编译二进制文件。但从 **Electron v41** 开始，npm 包不再包含预编译二进制，改由 `@electron/rebuild` 按需下载。这导致模板开箱即用失败 —— `electron-vite dev` 和 `electron-builder` 在开发/构建时找不到 Electron 可执行文件。
 
-本项目通过 `scripts/ensure-electron.mjs` 在 `postinstall` 阶段自动检测并下载对应平台的 Electron 二进制文件到正确位置，确保 `electron-vite dev` 和 `electron-builder` 正常工作。
+本仓库在官方模板基础上，新增了 `scripts/ensure-electron.mjs`，在 `postinstall` 阶段自动检测并下载对应平台的 Electron 二进制文件到正确位置，确保 `electron-vite dev` 和 `electron-builder` 在 Electron v41 下正常工作。
 
 ## 技术栈
 
